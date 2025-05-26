@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import '../App.css'
-import { auth } from '../firebase/config'
+import { auth } from '../auth/firebase'
 import Footer from './Footer'
 
 function Layout({ children, cart }) {
