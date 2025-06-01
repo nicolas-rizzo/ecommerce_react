@@ -1,4 +1,5 @@
 import { FaTrashAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 function Cart({ cart, setCart }) {
@@ -52,9 +53,16 @@ function Cart({ cart, setCart }) {
   }
 
   const total = cart.reduce((acc, item) => acc + parseFloat(item.price) * item.quantity, 0)
-
+  
   if (cart.length === 0) {
-    return <p>Tu carrito está vacío.</p>
+    return (
+      <div className='cta'>
+        <p>Tu carrito está vacío.</p>
+        <h2>¡Comenzá a comprar hoy mismo!</h2>
+        <p>Visitá la sección de productos y agregá tus favoritos al carrito.</p>
+        <Link className='btn-primary' to='/products'>Ver productos</Link>
+      </div>
+    )
   }
 
   return (

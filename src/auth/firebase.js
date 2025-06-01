@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDTleK142TZdafVzGRPFk38sG_2v4xPNlM",
@@ -12,3 +12,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
+
+export function crearUsuario(email, password) {
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    console.log("Credenciales de usuario:", userCredential);
+    const user = userCredential.user;
+    console.log(user);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    console.error("Error al crear usuario:", errorCode, errorMessage);
+    // ..
+  });
+}

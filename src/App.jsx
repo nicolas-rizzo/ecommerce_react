@@ -72,7 +72,7 @@ function App () {
           <Route path='/products' element={<Products addToCart={addToCart} />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/admin' element={user?.email === 'admin@midominio.com' ? <Admin /> : <Navigate to='/' />} />
+          <Route path='/admin' element={<Admin />} />
           <Route path='/product/:id' element={<ProductDetail addToCart={addToCart} />} />
           <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
           <Route path='/login' element={<Login />} />
