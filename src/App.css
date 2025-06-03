@@ -370,3 +370,18 @@ footer {
     width: 100%;
   }
 }
+
+p {
+  margin-bottom: 1lh;
+}
+
+.contact-form label {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.contact-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
