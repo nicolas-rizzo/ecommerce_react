@@ -4,6 +4,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import Swal from 'sweetalert2'
 import { auth } from './auth/firebase'
 import Layout from './components/Layout'
+import ProtectedRoute from './components/ProtectedRoute'
 import About from './pages/About'
 import Admin from './pages/Admin'
 import Cart from './pages/Cart'
@@ -72,7 +73,14 @@ function App () {
           <Route path='/products' element={<Products addToCart={addToCart} />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/admin' element={<Admin />} />
+          <Route
+            path='/admin'
+            element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
           <Route path='/product/:id' element={<ProductDetail addToCart={addToCart} />} />
           <Route path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
           <Route path='/login' element={<Login />} />

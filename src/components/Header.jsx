@@ -18,7 +18,10 @@ function Header ({ cart }) {
         <Link to='/products'>Productos</Link>
         <Link to='/about'>Nosotros</Link>
         <Link to='/contact'>Contacto</Link>
+        {
+        user !== null && (
         <Link to='/admin'>Admin</Link>
+        )}
         <Link to='/cart'>
           Carrito{cart.length > 0 && ` (${cart.length})`}
         </Link>
