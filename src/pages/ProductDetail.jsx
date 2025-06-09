@@ -30,7 +30,7 @@ function ProductDetail ({ addToCart }) {
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p><strong>Precio: ${product.price}</strong></p>
-      <button onClick={() => addToCart(product)}>Agregar al carrito</button>
+      <button className="add-to-cart-btn" onClick={() => addToCart(product)}>Agregar al carrito</button>
     </div>
   )
 }

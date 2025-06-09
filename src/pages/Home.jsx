@@ -1,4 +1,5 @@
 import { FaCheckCircle, FaLock, FaPhone, FaTruck } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Home () {
   return (
@@ -40,7 +41,7 @@ function Home () {
       <section className='cta'>
         <h2>¡Comenzá a comprar hoy mismo!</h2>
         <p>Visitá la sección de productos y agregá tus favoritos al carrito.</p>
-        <a className='btn-primary' href='/products'>Ver productos</a>
+        <Link className='btn-primary' to='/products'>Ver productos</Link>
       </section>
     </section>
   )
