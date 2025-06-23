@@ -16,8 +16,13 @@ function Login () {
       await signInWithEmailAndPassword(auth, email, password)
       navigate('/')
     } catch (err) {
-        console.error('Error de autenticación:', err)
-      setError('Credenciales inválidas')
+      console.error('Error de autenticación:', err.message, err.code)
+      
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-email' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+        setError('Usuario o contraseña invalidos, reintente nuevamente.')
+      } else {
+        setError('Ocurrió un error al iniciar sesión. Inténtalo de nuevo más tarde.')
+      }
     }
   }
 
