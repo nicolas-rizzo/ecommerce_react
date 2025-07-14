@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>&copy; {new Date().getFullYear()} - Mi Aplicacion React</p>
+      <p>&copy; {new Date().getFullYear()} - {import.meta.env.VITE_APP_NAME}</p>
     </footer>
   )
 }

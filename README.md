@@ -10,3 +10,8 @@ npm run dev
 # Usuarios
 Admin: nicolasrizzo@gmail.com
 Pass: 123456
+
+Usuario comun: usuario@gmail.com
+Pass: 123456
+
+Tambien funciona la registración para usuarios "no administradores"

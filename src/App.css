@@ -92,6 +92,7 @@ footer {
 }
 
 .landing .btn-primary {
+  display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: #3498db;
   color: white;
@@ -100,10 +101,24 @@ footer {
   font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
+  max-width: 100%;
+  width: auto;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .landing .btn-primary:hover {
   background-color: #2980b9;
+}
+
+@media (max-width: 480px) {
+  .landing .btn-primary {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.2rem;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .features,
@@ -145,12 +160,26 @@ footer {
   border-radius: 0.5rem;
   text-decoration: none;
   font-size: 1rem;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
+  max-width: 100%;
+  width: auto;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .cta .btn-primary:hover {
   background-color: #2980b9;
 }
+
+@media (max-width: 480px) {
+  .cta .btn-primary {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.2rem;
+  }
+}
+
 
 /* Contact Form */
 .contact {
@@ -384,4 +413,42 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    background-color: #2c3e50;
+    width: 100%;
+    text-align: right;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    background-color: #2c3e50;
+  }
+
+  .navbar.open {
+    display: flex;
+  }
+
+  .navbar a,
+  .navbar button {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid #3e5062;
+  }
 }

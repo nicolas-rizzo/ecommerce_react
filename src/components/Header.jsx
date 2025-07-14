@@ -1,33 +1,41 @@
 import { signOut } from 'firebase/auth'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import '../App.css'
 import { auth } from '../auth/firebase'
-import { useCart } from '../context/CartContext'
 
-const ADMIN_UID = 'btXg6Ucfj2XU0nHJ1dHTUkhkdQl1' //aca debería ir el uid del admin en firebase.
-
-function Header () {
+function Header ({ cart }) {
+  const [menuOpen, setMenuOpen] = useState(false)
   const user = auth.currentUser
   const navigate = useNavigate()
-  const { cart } = useCart()
 
   const handleLogout = async () => {
     await signOut(auth)
     navigate('/')
   }
 
+  const toggleMenu = () => setMenuOpen(prev => !prev)
+
   return (
     <header>
-      <nav className='navbar'>
-        <Link to='/'>Inicio</Link>
-        <Link to='/products'>Productos</Link>
-        <Link to='/about'>Nosotros</Link>
-        <Link to='/contact'>Contacto</Link>
-        {user?.uid === ADMIN_UID && <Link to='/admin'>Admin</Link>}
-        <Link to='/cart'>Carrito{cart.length > 0 && ` (${cart.length})`}</Link>
+      <button className='menu-toggle' onClick={toggleMenu}>
+        ☰
+      </button>
+      <nav className={`navbar ${menuOpen ? 'open' : ''}`}>
+        <Link to='/' onClick={() => setMenuOpen(false)}>Inicio</Link>
+        <Link to='/products' onClick={() => setMenuOpen(false)}>Productos</Link>
+        <Link to='/about' onClick={() => setMenuOpen(false)}>Nosotros</Link>
+        <Link to='/contact' onClick={() => setMenuOpen(false)}>Contacto</Link>
+        {user?.uid === import.meta.env.VITE_ADMIN_UID && (
+          <Link to='/admin' onClick={() => setMenuOpen(false)}>Admin</Link>
+        )}
+        <Link to='/cart' onClick={() => setMenuOpen(false)}>
+          Carrito{cart.length > 0 && ` (${cart.length})`}
+        </Link>
         {!user ? (
-          <Link to='/login'>Login</Link>
+          <Link to='/login' onClick={() => setMenuOpen(false)}>Login</Link>
         ) : (
-          <button onClick={handleLogout}>Cerrar sesión</button>
+          <button onClick={() => { handleLogout(); setMenuOpen(false) }}>Cerrar sesión</button>
         )}
       </nav>
     </header>
