@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { auth } from './auth/firebase'
 import Layout from './components/Layout'
@@ -66,7 +66,7 @@ function App () {
   if (checkingAuth) return <p>Cargando autenticación...</p>
 
   return (
-    <Router>
+
       <Layout cart={cart}>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -90,7 +90,6 @@ function App () {
           />
         </Routes>
       </Layout>
-    </Router>
   )
 }
 

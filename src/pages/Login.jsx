@@ -1,38 +1,33 @@
-import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { auth } from '../auth/firebase'
+import { useAuth } from '../context/AuthContext'
 
-function Login () {
+function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError(null)
     try {
-      await signInWithEmailAndPassword(auth, email, password)
+      await login(email, password)
       navigate('/')
     } catch (err) {
-      console.error('Error de autenticación:', err.message, err.code)
-      
-      if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-email' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-        setError('Usuario o contraseña invalidos, reintente nuevamente.')
-      } else {
-        setError('Ocurrió un error al iniciar sesión. Inténtalo de nuevo más tarde.')
-      }
+      console.error(err)
+      setError('Credenciales inválidas')
     }
   }
 
   return (
-    <section className='login'>
-      <h2>Iniciar sesión</h2>
+    <div className='login'>
       <form onSubmit={handleSubmit}>
+        <h2>Iniciar Sesión</h2>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <input
           type='email'
-          placeholder='Email'
+          placeholder='Correo electrónico'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -46,8 +41,7 @@ function Login () {
         />
         <button type='submit'>Ingresar</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </section>
+    </div>
   )
 }
 

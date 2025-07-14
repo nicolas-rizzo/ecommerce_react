@@ -6,3 +6,7 @@ npm install
 
 Ejecutar el proyecto:
 npm run dev
+
+# Usuarios
+Admin: nicolasrizzo@gmail.com
+Pass: 123456
