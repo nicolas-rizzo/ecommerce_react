@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import ProductDetail from './pages/ProductDetail'
 import Products from './pages/Products'
+import Register from './pages/Register'
 
 function App () {
   const [user, setUser] = useState(null)
@@ -88,6 +89,7 @@ function App () {
             path='/protected'
             element={user ? <h2>Ruta protegida</h2> : <Navigate to='/login' />}
           />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </Layout>
   )

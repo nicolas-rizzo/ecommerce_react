@@ -1,33 +1,33 @@
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import { auth } from '../auth/firebase'
 
-function Login() {
+function Register () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const navigate = useNavigate()
-  const { login } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
     try {
-      await login(email, password)
+      await createUserWithEmailAndPassword(auth, email, password)
       navigate('/')
     } catch (err) {
-      console.error(err)
-      setError('Credenciales inválidas')
+      setError(err.message)
     }
   }
 
   return (
     <div className='login'>
       <form onSubmit={handleSubmit}>
-        <h2>Iniciar Sesión</h2>
+        <h2>Crear cuenta</h2>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <input
           type='email'
-          placeholder='Correo electrónico'
+          placeholder='Email'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -39,12 +39,10 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type='submit'>Ingresar</button>
-        <p>¿No tenés cuenta? <Link to='/register'>Registrate</Link></p>
+        <button type='submit'>Registrarse</button>
       </form>
-      
     </div>
   )
 }
 
-export default Login
+export default Register
