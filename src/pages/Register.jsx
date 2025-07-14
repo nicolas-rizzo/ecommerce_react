@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../auth/firebase'
 
 function Register () {
@@ -40,6 +40,7 @@ function Register () {
           required
         />
         <button type='submit'>Registrarse</button>
+        <p>¿Ya tenés cuenta? <Link to='/login'>Iniciar sesión</Link></p>
       </form>
     </div>
   )

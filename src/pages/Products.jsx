@@ -6,6 +6,7 @@ function Products({ addToCart }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [search, setSearch] = useState('')
 
   // Estados para la paginación
   const [currentPage, setCurrentPage] = useState(1)
@@ -28,14 +29,14 @@ function Products({ addToCart }) {
     fetchProducts()
   }, [])
 
-  if (loading) return <p>Cargando productos...</p>
-  if (error) return <p>Error: {error}</p>
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(search.toLowerCase())
+  )
 
-  // Cálculo para la paginación
   const indexOfLastProduct = currentPage * productsPerPage
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct)
-  const totalPages = Math.ceil(products.length / productsPerPage)
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
 
   const handlePrevPage = () => {
     if (currentPage > 1) setCurrentPage(prev => prev - 1)
@@ -47,25 +48,43 @@ function Products({ addToCart }) {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Productos</h1>
-      <div className='product-list'>
-        {currentProducts.map(product => (
-          <ProductCard key={product.id} product={product} addToCart={addToCart} />
-        ))}
-      </div>
+      {loading ? (
+        <p>Cargando productos...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <>
+          <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Productos</h1>
 
-      <div className='pagination'>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Anterior
-        </button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Siguiente
-        </button>
-      </div>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <input
+              type='text'
+              placeholder='Buscar productos...'
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className='product-search'
+            />
+          </div>
 
+          <div className='product-list'>
+            {currentProducts.map(product => (
+              <ProductCard key={product.id} product={product} addToCart={addToCart} />
+            ))}
+          </div>
+
+          <div className='pagination'>
+            <button onClick={handlePrevPage} disabled={currentPage === 1}>
+              Anterior
+            </button>
+            <span>
+              Página {currentPage} de {totalPages}
+            </span>
+            <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+              Siguiente
+            </button>
+          </div>
+        </>
+      )}
     </div>
   )
 }
