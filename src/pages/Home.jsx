@@ -24,16 +24,16 @@ function Home () {
         <h2>Categorías destacadas</h2>
         <div className='category-grid'>
           <div className='category'>
-            <h3>Herramientas</h3>
-            <p>Todo lo que necesitás para tu taller o reparaciones en casa.</p>
+            <h3>Hombre</h3>
+            <p>Indumentaria moderna y cómoda para el día a día y ocasiones especiales.</p>
           </div>
           <div className='category'>
-            <h3>Electrónica</h3>
-            <p>Los mejores dispositivos y accesorios tecnológicos.</p>
+            <h3>Mujer</h3>
+            <p>Prendas versátiles y con estilo para cada momento de tu vida.</p>
           </div>
           <div className='category'>
-            <h3>Moda</h3>
-            <p>Ropa y calzado con estilo para todas las estaciones.</p>
+            <h3>Accesorios</h3>
+            <p>Complementá tu look con bolsos, cinturones, bijouterie y más.</p>
           </div>
         </div>
       </section>

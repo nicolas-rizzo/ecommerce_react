@@ -92,6 +92,7 @@ button:focus-visible {
   font-size: 1rem;
 }
 
+.admin-table button,
 .admin-form button {
   padding: 0.75rem;
   background-color: #1a1a1a;
@@ -102,7 +103,8 @@ button:focus-visible {
   cursor: pointer;
 }
 
-.admin-form button:hover {
+.admin-form button:hover,
+.admin-table button:hover {
   background-color: #333;
 }
 
