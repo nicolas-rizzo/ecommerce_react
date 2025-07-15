@@ -6,7 +6,7 @@ const API_URL = 'https://68348072464b499636031da8.mockapi.io/api/v1/productos'
 const adminEmails = ['nicolasrizzo@gmail.com']
 
 function Admin() {
-    const { user } = useAuth()
+  const { user } = useAuth()
 
   if (!user || !adminEmails.includes(user.email)) {
     return <p>Debes iniciar sesión como administrador</p>

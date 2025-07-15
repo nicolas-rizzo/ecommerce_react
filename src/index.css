@@ -94,7 +94,7 @@ button:focus-visible {
 
 .admin-form button {
   padding: 0.75rem;
-  background-color: #2ecc71;
+  background-color: #1a1a1a;
   border: none;
   color: white;
   font-size: 1rem;
@@ -103,7 +103,7 @@ button:focus-visible {
 }
 
 .admin-form button:hover {
-  background-color: #27ae60;
+  background-color: #333;
 }
 
 .admin-table {
@@ -159,7 +159,7 @@ button:focus-visible {
 }
 
 .pagination .active {
-  background-color: #3498db;
+  background-color: #1a1a1a;
   color: white;
 }
 
@@ -177,7 +177,7 @@ button:focus-visible {
 }
 
 .pagination button {
-  background-color: #3498db;
+  background-color: #1a1a1a;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -193,7 +193,7 @@ button:focus-visible {
 }
 
 .pagination button:hover:not(:disabled) {
-  background-color: #2980b9;
+  background-color: #333;
 }
 
 .pagination span {
